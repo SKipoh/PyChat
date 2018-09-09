@@ -22,3 +22,25 @@ def send(event=None):
     if msg == "{quit}":
         client_socket.close()
         top.quit()
+
+def on_closing(event=None):
+    #Function called when the window is closed
+    my_msg.set("{quit}")
+    send()
+
+top = tkinter.Tk()
+top.title("Chatter")
+
+messages_frame = tkinter.Frame(top)
+#For the messages to be sent
+my_msg = tkinter.StringVar()
+my_msg.set("Type your messages here")
+#A scrollbar to navigate through the chat
+scrollbar = tkinger.Scrollbar(messages_frame)
+
+msg_list = tkinter.Listbox(messages_frame, height=15, width=50), yscrollcommand=scrollbar.set)
+scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
+msg_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
+msg_list.pack
+
+messages_frame.pack()
